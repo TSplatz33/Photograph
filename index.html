@@ -53,7 +53,7 @@
       border: none;
       border-radius: 12px;
       color: white;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: transform 0.3s;
       animation: fadeIn 2s ease 1s forwards;
@@ -73,18 +73,36 @@
   </style>
 </head>
 <body>
-  <img src="https://tsplatz33.github.io/Photograph/Photograph.jpg" alt="Look at this photograph" />
-  <button onclick="startParty()">Tap to play</button>
-  <audio id="audio">
-    <source src="https://media.vocaroo.com/mp3/154iRHeqhXRb" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  <div id="message"></div>
+  <!-- TRUST ME SCREEN -->
+  <div id="start-screen">
+    <h1>This is totally not a trap</h1>
+    <p>Trust me, bro.</p>
+    <button onclick="startExperience()">Trust Me</button>
+  </div>
+
+  <!-- MAIN GRAPH PAGE -->
+  <div id="graph-screen" style="display:none; flex-direction:column; align-items:center;">
+    <img src="https://tsplatz33.github.io/Photograph/Photograph.jpg" alt="Look at this photograph" />
+    <div id="message"></div>
+    <audio id="audio">
+      <source src="https://media.vocaroo.com/mp3/154iRHeqhXRb" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 
   <script>
-    function startParty() {
-      document.getElementById('audio').play();
+    function startExperience() {
+      // Hide trust screen, show graph screen
+      document.getElementById('start-screen').style.display = 'none';
+      const graphScreen = document.getElementById('graph-screen');
+      graphScreen.style.display = 'flex';
       document.body.classList.add('party-bg');
+
+      // Play the song
+      const audio = document.getElementById('audio');
+      audio.play();
+
+      // Show the message
       const msg = document.getElementById('message');
       msg.textContent = 'LOOK AT THIS GRAAAAAAPH!';
       msg.style.opacity = '1';
