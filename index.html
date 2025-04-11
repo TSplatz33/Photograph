@@ -16,23 +16,79 @@
       height: 100vh;
       margin: 0;
       text-align: center;
+      overflow: hidden;
+      transition: background 2s ease;
+      animation: fadeIn 2s ease forwards;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .party-bg {
+      animation: bgPulse 8s infinite;
+      background: linear-gradient(-45deg, #ff0080, #ff8c00, #40e0d0, #8a2be2);
+      background-size: 400% 400%;
+    }
+
+    @keyframes bgPulse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     img {
       max-width: 90%;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      margin-bottom: 1rem;
+      animation: fadeIn 1.5s ease forwards;
     }
-    audio {
-      margin-top: 20px;
+
+    button {
+      padding: 12px 24px;
+      background-color: #ff5e5e;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+      animation: fadeIn 2s ease 1s forwards;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      opacity: 0;
+      animation: fadeIn 2s ease 2s forwards;
     }
   </style>
 </head>
 <body>
   <img src="https://tsplatz33.github.io/Photograph/Photograph.jpg" alt="Look at this photograph" />
-  <audio autoplay controls>
+  <button onclick="startParty()">Tap to play</button>
+  <audio id="audio">
     <source src="https://media.vocaroo.com/mp3/154iRHeqhXRb" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+  <div id="message"></div>
+
+  <script>
+    function startParty() {
+      document.getElementById('audio').play();
+      document.body.classList.add('party-bg');
+      const msg = document.getElementById('message');
+      msg.textContent = 'LOOK AT THIS GRAAAAAAPH!';
+      msg.style.opacity = '1';
+    }
+  </script>
 </body>
 </html>
