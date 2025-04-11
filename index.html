@@ -19,6 +19,7 @@
       overflow: hidden;
       transition: background 2s ease;
       animation: fadeIn 2s ease forwards;
+      position: relative;
     }
 
     @keyframes fadeIn {
@@ -38,13 +39,51 @@
       100% { background-position: 0% 50%; }
     }
 
-    img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-      margin-bottom: 1rem;
-      animation: fadeIn 1.5s ease forwards;
+    #waveform {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: rgba(255, 255, 255, 0.2);
+      border-top: 3px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      justify-content: space-around;
+      animation: wave 1.5s infinite;
+    }
+
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    .bar {
+      width: 10px;
+      height: 100%;
+      background-color: #ff5e5e;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { height: 30%; }
+      50% { height: 70%; }
+      100% { height: 30%; }
+    }
+
+    #message {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ff5e5e;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      position: absolute;
+      top: 20%;
+      width: 100%;
+      animation: fadeInText 2s ease-in-out forwards;
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     button {
@@ -63,14 +102,7 @@
       transform: scale(1.05);
     }
 
-    #message {
-      margin-top: 1.5rem;
-      font-size: 1.8rem;
-      font-weight: bold;
-      opacity: 0;
-      animation: fadeIn 2s ease 2s forwards;
-    }
-
+    /* Blinking emoji eyes */
     .blinking-eyes {
       font-size: 5rem;
       animation: blink 1.5s infinite;
@@ -78,26 +110,33 @@
     }
 
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.1; }
+      0%, 100% { content: "👀"; opacity: 1; }
+      50% { content: "👁️"; opacity: 0.1; }
     }
+
   </style>
 </head>
 <body>
   <!-- TRUST ME SCREEN -->
   <div id="start-screen">
-    <div class="blinking-eyes">O_O</div>
+    <div class="blinking-eyes">👀</div>
     <button onclick="startExperience()">Trust me, bro.</button>
   </div>
 
   <!-- MAIN GRAPH PAGE -->
   <div id="graph-screen" style="display:none; flex-direction:column; align-items:center;">
-    <img src="https://tsplatz33.github.io/Photograph/Photograph.jpg" alt="Look at this photograph" />
-    <div id="message"></div>
+    <div id="message">LOOK AT THIS GRAAAAAAPH!</div>
     <audio id="audio">
       <source src="https://media.vocaroo.com/mp3/154iRHeqhXRb" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
+    <div id="waveform">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
   </div>
 
   <script>
@@ -114,7 +153,6 @@
 
       // Show the message
       const msg = document.getElementById('message');
-      msg.textContent = 'LOOK AT THIS GRAAAAAAPH!';
       msg.style.opacity = '1';
     }
   </script>
