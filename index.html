@@ -70,14 +70,24 @@
       opacity: 0;
       animation: fadeIn 2s ease 2s forwards;
     }
+
+    .blinking-eyes {
+      font-size: 5rem;
+      animation: blink 1.5s infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.1; }
+    }
   </style>
 </head>
 <body>
   <!-- TRUST ME SCREEN -->
   <div id="start-screen">
-    <h1>This is totally not a trap</h1>
-    <p>Trust me, bro.</p>
-    <button onclick="startExperience()">Trust Me</button>
+    <div class="blinking-eyes">O_O</div>
+    <button onclick="startExperience()">Trust me, bro.</button>
   </div>
 
   <!-- MAIN GRAPH PAGE -->
